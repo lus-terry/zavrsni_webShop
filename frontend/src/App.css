@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 /* FONT */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
@@ -16,9 +18,35 @@
 }
 
 body {
-  margin-top: 80px; /* Visina nav bara */
+ 
   font-family: 'Roboto';
   font-weight: 400;
+  background: #f6efe7;
+}
+
+.content_container {
+  background-image: url('https://res.cloudinary.com/lus-terry/image/upload/v1715785254/InSylvis/backrgound3.png');
+  background-size: 100% auto; 
+  background-repeat: no-repeat;
+  background-position: center top;
+  padding-top: 220px; /* Adjust this value as needed */
+  /*position: relative;*/
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+ 
+}
+
+.row_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .razmaknut_text {
@@ -30,8 +58,41 @@ body {
   letter-spacing: 0.3rem;
 }
 
+.normal_text {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.button {
+  transition-duration: 0.4s;
+  background-color: transparent;
+  color: black;
+  border: 2px solid #657140;
+  padding: 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-image: linear-gradient(to right, #657140 0%, #657140 0%);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  width: 150px;
+}
+.button:hover {
+  transition-duration: 0.7s;
+  background-size: 100% 100%;
+  color: white;
+}
+
+
+
 #nav-bar{
   position: fixed;
+  z-index: 999;
   top: 0;
   left: 0;
   width: 100%;

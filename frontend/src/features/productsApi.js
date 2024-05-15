@@ -13,3 +13,5 @@ export const productsApi = createApi({
 });
 
 export const { useGetAllProductsQuery } = productsApi; 
+
+/* tu nesto ne radi kako treba */
