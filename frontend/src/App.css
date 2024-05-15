@@ -24,6 +24,14 @@ body {
   background: #f6efe7;
 }
 
+h2 {
+  font-family: 'Playfair Display';
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 30px;
+  letter-spacing: 0.4rem;
+}
+
 .content_container {
   background-image: url('https://res.cloudinary.com/lus-terry/image/upload/v1715785254/InSylvis/backrgound3.png');
   background-size: 100% auto; 
@@ -47,6 +55,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
+  gap: 1rem;
 }
 
 .razmaknut_text {
@@ -81,6 +90,12 @@ body {
   background-size: 0% 100%;
   background-repeat: no-repeat;
   width: 150px;
+
+  font-family: 'Playfair Display';
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 15px;
+  letter-spacing: 0.3rem;
 }
 .button:hover {
   transition-duration: 0.7s;

@@ -38,7 +38,7 @@ const ProductCardHomePage = ({ product }) => {
                 </div>
 
                 <div className="h-1/3  flex flex-col justify-end items-center">
-                    <Button className="razmaknut_text text-base"  style={{width: '70%'}} onClick={() => navigate("/shop") } >ISTRAŽI</Button>
+                    <Button   style={{width: '70%'}} onClick={() => navigate("/shop") } >FIND OUT MORE</Button>
                 </div>
 
           </div>

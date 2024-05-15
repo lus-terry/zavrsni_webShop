@@ -1,4 +1,5 @@
 
+import { Button } from "semantic-ui-react";
 import ProductCardHomePage from "../components/ProductCardHomePage";
 import { useGetAllProductsQuery } from "../features/productsApi";
 
@@ -7,14 +8,15 @@ const  Home = () => {
     const {data, error, isLoading} = useGetAllProductsQuery();
     return (
     <div className="content_container">
-            <div className="row_container">
-                <div  style={{height: '700px'}}>
+        <div className="row_container">
+            <h2>ABOUT US</h2>
+            <div  style={{height: '700px'}}>
 
-                </div>
             </div>
+        </div>
 
         <div className="row_container">
-            <div className="razmaknut_text">OUR WINES</div>
+            <h2>SHOP OUR WINES</h2>
 
             {isLoading ? (
                 <p>Loading...</p>
@@ -33,18 +35,19 @@ const  Home = () => {
                 </>
 
             )}
+            <Button style={{width: '20%'} } >SEARCH ALL WINES</Button>
 
         </div>
         <div className="row_container">
-        bla bla
+            <h2>VISIT</h2>
 
         </div>
         <div className="row_container">
-        bla bla
+            <h2>GALLERY</h2>
 
         </div>
         <div className="row_container">
-        bla bla
+            <h2>CONTACT</h2>
 
         </div>
         
