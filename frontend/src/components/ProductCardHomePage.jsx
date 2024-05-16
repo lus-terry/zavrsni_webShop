@@ -1,14 +1,19 @@
 import React from "react";
 import {Button} from "semantic-ui-react"
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart, getTotals } from "../features/cartSlice";
+
 
 
 const ProductCardHomePage = ({ product }) => {
-    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
+    const handleAddToCart = (product) => {
+        dispatch(addToCart(product));
+        dispatch(getTotals());
+    };
 
-
-
+  
 
 
   return (
@@ -38,7 +43,7 @@ const ProductCardHomePage = ({ product }) => {
                 </div>
 
                 <div className="h-1/3  flex flex-col justify-end items-center">
-                    <Button   style={{width: '70%'}} onClick={() => navigate("/shop") } >FIND OUT MORE</Button>
+                    <Button  onClick={() => handleAddToCart(product)} style={{width: '70%'}} >ADD TO CART</Button>
                 </div>
 
           </div>
