@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { toast } from "react-toastify";
 
 const initialState = {
-    cartItems: [],
+    cartItems: localStorage.getItem("cartItems")
+     ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
     cartTotalQuantity: 0,
     cartTotalAmount: 0,
 };
@@ -19,48 +21,63 @@ const cartSlice = createSlice({
             //ako već imamo taj item samo povećavamo njegov quantity
             if(itemIndex >= 0) {
                 state.cartItems[itemIndex].cartTotalQuantity += 1
-                
+
+                toast.info(`Increased "${state.cartItems[itemIndex].name}" cart quantity`, {
+                    position: "bottom-left"
+                });  
             } else {
             //ako jos nemamo taj item, dodajemo ga
                 const tempProduct = {...action.payload, cartTotalQuantity: 1}
-                state.cartItems.push(tempProduct);   
+                state.cartItems.push(tempProduct);
+
+                toast.success(`"${action.payload.name}" was succesfully added to your cart`, {
+                    position: "bottom-left"
+                });   
             } 
 
-            /*//funkcionira kao key-value
+            //funkcionira kao key-value
             localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
         
-            */
+            
             
         },
         removeFromCart(state, action) {
             const nextCartItems = state.cartItems.filter(
-                cartItem => cartItem._id !== action.payload._id
+                cartItem => cartItem.id !== action.payload.id
             )
             state.cartItems = nextCartItems;
             localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+
+            toast.error(`"${action.payload.name}" was removed from your cart`, {
+                position: "bottom-left"
+            });
 
             
         },
         decreaseCart(state, action) {
             const itemIndex = state.cartItems.findIndex(
-                cartItem => cartItem._id === action.payload._id
+                cartItem => cartItem.id === action.payload.id
             );
 
             if(state.cartItems[itemIndex].cartTotalQuantity > 1) {
                 state.cartItems[itemIndex].cartTotalQuantity -= 1;
                 
-                
+                toast.info(`Decreased "${action.payload.name}" cart quantity `, {
+                    position: "bottom-left"
+                });  
             } else if(state.cartItems[itemIndex].cartTotalQuantity === 1) {
                 
                 //remove from cart
                 
 
                 const nextCartItems = state.cartItems.filter(
-                    cartItem => cartItem._id !== action.payload._id
+                    cartItem => cartItem.id !== action.payload.id
                 )
                 state.cartItems = nextCartItems;
     
-               
+                toast.error(`"${action.payload.name}" was removed from your cart`, {
+                    position: "bottom-left"
+                });
             }
 
             localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
@@ -68,7 +85,9 @@ const cartSlice = createSlice({
 
         clearCart(state, action) {
             state.cartItems = [];
-           
+            toast.error(`cart cleared`, {
+                position: "bottom-left"
+            });
             localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
 
         },
