@@ -1,29 +1,20 @@
 
+
 import { Button } from "semantic-ui-react";
-import ProductCardHomePage from "../components/ProductCardHomePage";
+import ProductCardShop from "../components/ProductCardShop";
 import { useGetAllProductsQuery } from "../features/productsApi";
 import { useNavigate } from "react-router-dom";
 
-const  Home = () => {
+const  Shop = () => {
   
     const {data, error, isLoading} = useGetAllProductsQuery();
     const navigate = useNavigate();
 
-    const handleNavigate = (link) => {
-        navigate(link);
-    };
-
     return (
     <div className="content_container">
+        
         <div className="row_container">
-            <h2>ABOUT US</h2>
-            <div  style={{height: '700px'}}>
-
-            </div>
-        </div>
-
-        <div className="row_container">
-            <h2>SHOP OUR WINES</h2>
+ 
 
             {isLoading ? (
                 <p>Loading...</p>
@@ -33,7 +24,7 @@ const  Home = () => {
                 <>
                 <div className="flex " > 
                     {data?.map(product => 
-                    <ProductCardHomePage
+                    <ProductCardShop
                     key = {product.id}
                     product = {product}
                     />
@@ -42,19 +33,9 @@ const  Home = () => {
                 </>
 
             )}
-            <Button style={{width: '20%'}} onClick={() => handleNavigate("/shop")} >SEARCH ALL WINES</Button>
-
-        </div>
-        <div className="row_container">
-            <h2>VISIT</h2>
-
-        </div>
-        <div className="row_container">
-            <h2>GALLERY</h2>
-
-        </div>
-        <div className="row_container">
-            <h2>CONTACT</h2>
+        
+            <Button style={{width: '20%'}}  onClick={() => navigate("/cart")} >GO TO CART</Button>
+          
 
         </div>
         
@@ -62,4 +43,4 @@ const  Home = () => {
     );
 };
  
-export default Home;
+export default Shop;

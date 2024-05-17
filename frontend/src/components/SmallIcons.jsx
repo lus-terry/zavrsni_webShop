@@ -12,7 +12,7 @@ const SmallIcons = () => {
         <Link to="/favourites" ><FavouritesIcon /></Link>
       </div>
       <div className="w-8 h-8 flex items-center justify-center">
-        <Link to="/cart" ><CartIcon cartTotalQuantity={0}/></Link>
+        <Link to="/cart" ><CartIcon/></Link>
       </div>
       {/**TODO: skuzit zas bez pt-1 nisu poravnati */}
       <div className="w-8 h-8 flex pt-1 justify-center">

@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
 import SmallIcons from "../components/SmallIcons";
 
+
 const NavBar = () => {
+
     return <nav id="nav-bar">
-
-
 
     <Link to="/"  >
           <Logo/>
