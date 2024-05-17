@@ -1,6 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-const CartIcon = ({ cartTotalQuantity }) => {
+const CartIcon = () => {
+  const {cartTotalQuantity} = useSelector(state => state.cart)
+
   return (
     <span className="relative group ">
       <svg className="h-7 w-8 text-black group-hover:text-blue-300 group-hover:transition duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">

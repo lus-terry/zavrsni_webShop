@@ -2,10 +2,17 @@
 import { Button } from "semantic-ui-react";
 import ProductCardHomePage from "../components/ProductCardHomePage";
 import { useGetAllProductsQuery } from "../features/productsApi";
+import { useNavigate } from "react-router-dom";
 
 const  Home = () => {
   
     const {data, error, isLoading} = useGetAllProductsQuery();
+    const navigate = useNavigate();
+
+    const handleNavigate = (link) => {
+        navigate(link);
+    };
+
     return (
     <div className="content_container">
         <div className="row_container">
@@ -35,7 +42,7 @@ const  Home = () => {
                 </>
 
             )}
-            <Button style={{width: '20%'} } >SEARCH ALL WINES</Button>
+            <Button style={{width: '20%'}} onClick={() => handleNavigate("/shop")} >SEARCH ALL WINES</Button>
 
         </div>
         <div className="row_container">

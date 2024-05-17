@@ -19,9 +19,6 @@ const ProductCardHomePage = ({ product }) => {
           <div style={{ height: "200px" }} className="p-2">
                 <div className="h-1/3 mt-1 px-2 razmaknut_text text-center text-lg flex flex-col">
                     {product.name}
-                    <div className="  normal_text text-sm">
-                    {product.price}€
-                    </div>
                 </div>
 
                 

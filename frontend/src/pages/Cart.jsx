@@ -4,9 +4,6 @@ import { useEffect } from "react";
 import { Button } from "semantic-ui-react";
 import { addToCart, clearCart, decreaseCart, getTotals, removeFromCart } from "../features/cartSlice";
 
-
-
-
 const Cart = () => {
 
     const cart = useSelector((state) => state.cart);
