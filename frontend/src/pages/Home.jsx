@@ -1,4 +1,3 @@
-
 import { Button } from "semantic-ui-react";
 import ProductCardHomePage from "../components/ProductCardHomePage";
 import { useGetAllProductsQuery } from "../features/productsApi";

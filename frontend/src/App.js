@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Register from './pages/Auth/Register';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <ToastContainer/>
           <NavBar />
           <Routes> 
+          <Route path="/register" element={<Register />} /> 
             <Route path="/aboutUs" element={<AboutUs />} /> 
             <Route path="/shop" element={<Shop />} /> 
             <Route path="/visit" element={<Visit />} /> 
