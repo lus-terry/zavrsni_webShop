@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../features/authSlice";
+import { loginUser } from "../../features/authSlice";
 import { Link , useNavigate} from "react-router-dom";
 import { Button } from "semantic-ui-react";
 
 
-const Register = () => {
+const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const auth = useSelector((state) => state.auth);
@@ -19,18 +19,17 @@ const Register = () => {
     }, [auth._id, navigate]);
 
     const [user, setUser] = useState({
-        name: "",
         email: "",
         password: "",
     })
 
-    const { email, password, name } = user;
+    const { email, password } = user;
 
     const handleSubmit = (e) => {
         //handling submit  without reloading the page
         e.preventDefault();
 
-        dispatch(registerUser(user));
+        dispatch(loginUser(user));
     }
 
     const handleOnChange = (e) => {
@@ -43,7 +42,7 @@ const Register = () => {
         
         <div className="form_container ">
 
-            <div className="text-2xl mb-4 text-center">Signup</div>
+            <div className="text-2xl mb-4 text-center">Login</div>
             
             <form onSubmit={handleSubmit} className="space-y-4">
             
@@ -60,19 +59,7 @@ const Register = () => {
                     className="custom-input"
                     />
                 </div>
-                <div>
-                <label htmlFor="username" className="block font-medium text-gray-700">
-                    Username
-                    </label>
-                    <input
-                    type="text"
-                    name="name"
-                    value={name}
-                    placeholder="Create username"
-                    onChange={handleOnChange}
-                    className="custom-input"
-                    />
-                </div>
+             
                 <div>
                 <label htmlFor="password" className="block font-medium text-gray-700">
                     Password
@@ -81,14 +68,14 @@ const Register = () => {
                     type="password"
                     name="password"
                     value={password}
-                    placeholder="Create password"
+                    placeholder="Enter your password"
                     onChange={handleOnChange}
                     className="custom-input"
                     />
                 </div>
                 <div className="text-center text-red-700">
-                    {auth.registerStatus === "rejected" ? (
-                        <p>{auth.registerError}</p>
+                    {auth.loginStatus === "rejected" ? (
+                        <p>{auth.loginError}</p>
                     ) : null}
                 </div>
                
@@ -97,12 +84,12 @@ const Register = () => {
                     type="submit"
                     className="button"
                     >
-                    Signup
+                    Login
                     </Button>
                 </div>
                 <span className="flex text-center">
-                    <div className="w-3/4 ">Already have an account?</div>
-                    <div className="w-1/4 text-left"><Link to="/login" className="custom-details-color hover:font-bold">Login</Link></div> 
+                    <div className="w-3/4 ">Don't have an account?</div>
+                    <div className="w-1/4 text-left"><Link to="/register" className="custom-details-color hover:font-bold">Signup</Link></div> 
                 </span>
                 
                 </form>
@@ -111,4 +98,4 @@ const Register = () => {
      );
 }
  
-export default Register;
+export default Login;

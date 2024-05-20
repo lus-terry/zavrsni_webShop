@@ -8,8 +8,8 @@ import { Provider } from "react-redux";
 
 import productsReducer, { productsFetch } from './features/productsSlice';
 import { productsApi } from './features/productsApi';
-import cartReducer from './features/cartSlice';
-import authReducer from './features/authSlice';
+import cartReducer, { getTotals } from './features/cartSlice';
+import authReducer, { loadUser } from './features/authSlice';
 
 
 const store = configureStore({
@@ -25,6 +25,8 @@ const store = configureStore({
 });
 
 store.dispatch(productsFetch());
+store.dispatch(getTotals());
+store.dispatch(loadUser(null));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

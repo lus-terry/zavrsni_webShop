@@ -4,8 +4,17 @@ import { Link } from 'react-router-dom';
 import CartIcon from './CartIcon';
 import FavouritesIcon from './FavouriteIcon';
 import AvatarIcon from './AvatarIcon';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../features/authSlice';
+import { toast } from "react-toastify";
+import AvatarIconGreen from './AvatarIconGreen';
 
 const SmallIcons = () => {
+
+  const dispatch = useDispatch()
+  const auth = useSelector((state) => state.auth)
+
+
   return (
     <div className="flex items-center justify-center space-x-1">
       <div className="w-8 h-8 flex items-center justify-center">
@@ -16,7 +25,20 @@ const SmallIcons = () => {
       </div>
       {/**TODO: skuzit zas bez pt-1 nisu poravnati */}
       <div className="w-8 h-8 flex pt-1 justify-center">
-        <button ><AvatarIcon/></button>
+      {
+        auth._id ?
+        <AvatarIconGreen 
+          onClick={() => {
+              dispatch(logoutUser());
+              toast.warning("Logged out", {position: 'bottom-left'});
+              console.log("clicked")
+            }}
+            name={auth.name} 
+        />
+        :  <Link to="/register"><AvatarIcon/> </Link>
+      
+      }
+        
       </div>
     </div>
   );
