@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "semantic-ui-react";
 import { addToCart, clearCart, decreaseCart, getTotals, removeFromCart } from "../features/cartSlice";
@@ -9,6 +9,7 @@ const Cart = () => {
     const cart = useSelector((state) => state.cart);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const auth = useSelector((state) => state.auth)
     
     useEffect(() => {
         dispatch(getTotals());
@@ -141,14 +142,27 @@ const Cart = () => {
                                 </div> 
                                 <p className="obican_text text-sm pt-2">Taxes and shipping are calculated at checkout</p>
                                 
-                                <div className="flex items-center justify-center pt-3  gap-3">
+                                <div className="flex items-start  pt-3  gap-3">
 
-                                    <div className="flex w-1/3">
-                                    <Button onClick={() => navigate("/shop")} > Continue Shopping</Button>
+                                    <div className="flex w-1/3 ">
+                                        <Button onClick={() => navigate("/shop") } style={{width: '100%'}} clas> Continue Shopping</Button>
                                     </div>
-                                    <div className="flex w-1/3">
-                                    <Button   onClick={() =>  navigate("/checkout", { state: { cartData: cart.cartItems } }) } > Checkout</Button>
-                            
+                                    <div className="flex flex-col w-1/3">
+                                        {auth._id ? 
+                                            <Button   className="text-grey-200" onClick={() =>  navigate("/checkout", { state: { cartData: cart.cartItems } }) }  style={{width: '70%'}}> Checkout</Button>
+                                            :
+                                            <>
+                                            <Button  id="button_blocked" style={{  width: '100%' }} > Checkout</Button>
+                                            <div className="flex flex-row justify-center">
+                                                <p className="pr-2 text-xs">Please login to continue.</p> 
+                                                <Link to="/login" className="text-xs hover:text-blue-300 ">Login</Link>
+                                            </div>
+                                          
+                                            </>
+                                            
+                                        }
+                                        
+                                
                                     </div>
 
 
