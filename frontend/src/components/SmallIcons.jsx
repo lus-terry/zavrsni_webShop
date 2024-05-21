@@ -5,7 +5,7 @@ import CartIcon from './CartIcon';
 import FavouritesIcon from './FavouriteIcon';
 import AvatarIcon from './AvatarIcon';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutUser } from '../features/authSlice';
+import { logoutUser } from '../slices/authSlice';
 import { toast } from "react-toastify";
 import AvatarIconGreen from './AvatarIconGreen';
 

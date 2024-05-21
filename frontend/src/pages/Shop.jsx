@@ -2,7 +2,7 @@
 
 import { Button } from "semantic-ui-react";
 import ProductCardShop from "../components/ProductCardShop";
-import { useGetAllProductsQuery } from "../features/productsApi";
+import { useGetAllProductsQuery } from "../slices/productsApi";
 import { useNavigate } from "react-router-dom";
 
 const  Shop = () => {

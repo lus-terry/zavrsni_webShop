@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../features/authSlice";
+import { loginUser } from "../../slices/authSlice";
 import { Link , useNavigate} from "react-router-dom";
 import { Button } from "semantic-ui-react";
 

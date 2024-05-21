@@ -1,7 +1,7 @@
 import React from "react";
 import {Button} from "semantic-ui-react"
 import { useDispatch } from "react-redux";
-import { addToCart, getTotals } from "../features/cartSlice";
+import { addToCart, getTotals } from "../slices/cartSlice";
 
 
 
