@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom"; 
+import { BrowserRouter, Route, Routes } from "react-router-dom"; 
 import NavBar from './pages/NavBar';
 import AboutUs from './pages/AboutUs';
 import Shop from './pages/Shop';
@@ -13,6 +13,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Register from './pages/Auth/Register';
 import Login from './pages/Auth/Login';
+import CheckoutSuccess from './pages/CheckoutSuccess';
 
 
 function App() {
@@ -30,9 +31,9 @@ function App() {
             <Route path="/gallery" element={<Gallery />} /> 
             <Route path="/contact" element={<Contact />} /> 
             <Route path="/cart" element={<Cart />} /> 
-            <Route path="/not-found" element={<NotFound />} /> 
+            <Route path="/checkout-success" element={<CheckoutSuccess />} /> 
             <Route path="/"  exact element={<Home />} /> 
-            <Route path="*" element={<Navigate to="/not-found" />} />
+            <Route path="*" element={<NotFound />} /> 
           </Routes> 
       </BrowserRouter>
     </div>

@@ -2,7 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "semantic-ui-react";
-import { addToCart, clearCart, decreaseCart, getTotals, removeFromCart } from "../features/cartSlice";
+import { addToCart, clearCart, decreaseCart, getTotals, removeFromCart } from "../slices/cartSlice";
+import PayButton from "../components/PayButton";
 
 const Cart = () => {
 
@@ -149,7 +150,7 @@ const Cart = () => {
                                     </div>
                                     <div className="flex flex-col w-1/3">
                                         {auth._id ? 
-                                            <Button   className="text-grey-200" onClick={() =>  navigate("/checkout", { state: { cartData: cart.cartItems } }) }  style={{width: '70%'}}> Checkout</Button>
+                                            <PayButton   cartItems = {cart.cartItems}/> 
                                             :
                                             <>
                                             <Button  id="button_blocked" style={{  width: '100%' }} > Checkout</Button>

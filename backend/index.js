@@ -3,10 +3,9 @@ const cors = require("cors")
 const mongoose = require("mongoose")
 const register = require("./routes/register")
 const login = require("./routes/login")
-
 const products = require("./products")
-
 const app = express()
+const stripe = require("./routes/stripe")
 
 require("dotenv").config()
 
@@ -15,6 +14,7 @@ app.use(cors())
 
 app.use("/api/register", register)
 app.use("/api/login", login)
+app.use("/api/stripe", stripe)
 
 app.get("/", (req, res) => {
     res.send("Welcome to our online shop API...")
