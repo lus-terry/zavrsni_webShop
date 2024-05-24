@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Logo from "../components/Logo";
-import SmallIcons from "../components/SmallIcons";
+import Logo from "./Logo";
+import SmallIcons from "./SmallIcons";
 
 
 const NavBar = () => {
@@ -15,6 +15,9 @@ const NavBar = () => {
       <SmallIcons/>
       <div>
       <ul className="flex space-x-10 text-sm ">
+                  <li>
+                      <Link to="/admin/summary" className="font-black">ADMIN</Link>
+                  </li>
                   <li>
                       <Link to="/aboutUs">ABOUT US</Link>
                   </li>

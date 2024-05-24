@@ -1,11 +1,11 @@
 import { Button } from "semantic-ui-react";
 import ProductCardHomePage from "../components/ProductCardHomePage";
-import { useGetAllProductsQuery } from "../slices/productsApi";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const  Home = () => {
   
-    const {data, error, isLoading} = useGetAllProductsQuery();
+    const {items: data, status} = useSelector((state) => state.products);
     const navigate = useNavigate();
 
     const handleNavigate = (link) => {
@@ -24,22 +24,23 @@ const  Home = () => {
         <div className="row_container">
             <h2>SHOP OUR WINES</h2>
 
-            {isLoading ? (
-                <p>Loading...</p>
-            ) : error ? (
-                <p>An error occured...</p>
-            ) : (
+            {status === "success" ? (
                 <>
                 <div className="flex " > 
-                    {data?.map(product => 
+                    {data &&
+                    data?.map(product => 
                     <ProductCardHomePage
-                    key = {product.id}
+                    key = {product._id}
                     product = {product}
                     />
                     )}
                 </div>
                 </>
 
+            ) : status === "pending" ? (
+                <p>Loading...</p>
+            ) : (
+                <p>Unexpected error occured...</p>
             )}
             <Button style={{width: '20%'}} onClick={() => handleNavigate("/shop")} >SEARCH ALL WINES</Button>
 
