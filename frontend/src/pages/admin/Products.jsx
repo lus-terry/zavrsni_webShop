@@ -5,13 +5,13 @@ const Products = () => {
     const navigate = useNavigate();
 
     return(
-    <>
-        <h2>Products</h2>
-        <Button onClick={() => navigate("/admin/products/create-product")}>
+    <div className="row_container">
+        <h2 className="pb-0">Products:</h2>
+        <Button  onClick={() => navigate("/admin/products/create-product")}>
                     Create new
         </Button>
         <Outlet/>
-    </>) 
+    </div>) 
 }
  
 export default Products;
