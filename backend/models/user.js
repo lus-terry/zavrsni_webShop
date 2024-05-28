@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
         minLength: 3,
         maxLength: 1024 //password max length is actually 200 but with hash is 1024
     },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    },
 
 });
 

@@ -1,12 +1,13 @@
 const express = require("express")
 const cloudinary = require("../utils/cloudinary");
 const { Product } = require("../models/product");
+const {isAdmin} = require("../middleware/auth")
 
 
 const router = express.Router();
 
 //CREATE 
-router.post("/",  async(req, res) => {
+router.post("/", isAdmin, async(req, res) => {
     const{name, shortDesc, longDesc, price, image} = req.body;
 
     try{

@@ -13,9 +13,9 @@ const  Shop = () => {
     const navigate = useNavigate();
 
     return (
-    <div className="content_container">
+    <div className="content_container ">
         
-        <div className="row_container">
+        <div className="row_container ">
  
 
             {status === "success" ? (

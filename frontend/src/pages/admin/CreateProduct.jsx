@@ -84,15 +84,15 @@ const CreateProduct = () => {
                         <p>price:</p>
                         <input
                             className="input"
-                            type="text" 
+                            type="number" 
                             required 
                             placeholder="€  0.00"
                             onChange={(e) => setPrice(e.target.value)}
                         
                         />
                         <p>short description:</p>
-                        <input
-                            style={{ height: '100px' }}
+                        <textarea
+                            style={{ height: '100px', boxSizing: 'border-box'  }}
                             className="input" 
                             type="text" 
                           
@@ -101,7 +101,7 @@ const CreateProduct = () => {
                         
                         />
                         <p>long description:</p>
-                        <input
+                        <textarea
                             style={{ height: '200px' }}
                             className="input" 
                             type="text" 
@@ -110,6 +110,7 @@ const CreateProduct = () => {
                             onChange={(e) => setLongDesc(e.target.value)}
                         
                         />
+                        
                         <p>image:</p>
                         <label className="button" style={{  width: '100%' }}>
                             <input

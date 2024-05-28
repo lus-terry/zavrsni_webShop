@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios"
-import {url} from "./api"
+import {setHeaders, url} from "./api"
 import {toast} from "react-toastify"
 
 const initialState = {
@@ -27,7 +27,7 @@ export const productsCreate = createAsyncThunk(
     //accepting from create product form
     async(values) => {
         try{ 
-            const response = await axios.post(`${url}/products`, values)
+            const response = await axios.post(`${url}/products`, values, setHeaders())
             return response.data 
         }catch(error) {
             console.log(error);
@@ -64,10 +64,12 @@ const productsSlice = createSlice({
                 state.createStatus = "success";
                 state.items.push(action.payload);
                 state.error = null;
+                toast.success("Product Created")
             })
             .addCase(productsCreate.rejected, (state, action) => {
                 state.createStatus = "rejected";
                 state.error = action.error.message;
+                toast.error("An error occured")
             });
     },
 });
