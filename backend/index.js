@@ -7,6 +7,8 @@ const products = require("./products")
 const app = express()
 const stripe = require("./routes/stripe")
 const productsRoute = require("./routes/products")
+const users = require("./routes/users")
+const orders = require("./routes/orders")
 const bodyParser = require('body-parser');
 
 require("dotenv").config()
@@ -21,6 +23,9 @@ app.use("/api/register", register)
 app.use("/api/login", login)
 app.use("/api/stripe", stripe)
 app.use("/api/products", productsRoute)
+app.use("/api/stripe", stripe)
+app.use("/api/users", users)
+app.use("/api/orders", orders)
 
 app.get("/", (req, res) => {
     res.send("Welcome to our online shop API...")
