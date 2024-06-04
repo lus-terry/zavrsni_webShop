@@ -133,6 +133,7 @@ p {
   flex-direction: column;
  
   padding-left: 210px;
+  padding-right: 10px;
   padding-top: 10px;
   width: 100%;
 }
@@ -262,7 +263,6 @@ p {
   left: 0;
   width: 200px;
   height: 100%;
-  padding: 0 40px;
 
 
   background-color: black;
@@ -346,4 +346,93 @@ p {
   font-size: 0.9rem;
   font-style: italic;
 }
+
+.admin_overview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  gap: 1rem;
+  background-color: #657140;
+  border-radius: 10px; 
+  padding: 20px;
+
+}
+
+.widget_container_div {
+  display: flex;
+
+  align-items: center;
+  text-align: center;
+
+  height: 60px;
+  width: 200px;
+  justify-content: space-between;
+
+}
+
+.widget_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+}
+
+.percentage_div {
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  
+}
+
+.admin_chart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  height: 550px;
+  gap: 1rem;
+  background-color:rgb(245, 245, 238); 
+  border: 2px solid #657140;
+  border-radius: 10px; 
+  padding: 20px;
+}
+
+.admin_transactions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+  height: 375px;
+  gap: 1rem;
+  background-color:rgb(245, 245, 238); 
+  border: 2px solid #657140;
+  border-radius: 10px; 
+  padding: 20px;
+  background-color: #a1ad7d;
+}
+
+
+.transaction_container_div {
+  display: flex;
+
+  align-items: center;
+  text-align: center;
+
+  height: 40px;
+  width: 650px;
+  
+  justify-content: space-between;
+
+  background-color: rgba(101, 113, 64, 0.5);
+
+}
+
+
 
