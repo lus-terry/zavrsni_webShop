@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { url, setHeaders } from '../../../slices/api';
+import { useParams } from 'react-router-dom';
 
 const useSummaryData = () => {
+  const params = useParams();
+
   const [usersMonth, setUsersMonth] = useState([]);
   const [usersPercMonth, setUsersPercMonth] = useState(0);
 
@@ -23,6 +26,9 @@ const useSummaryData = () => {
   const [totalOrders, setTotalOrders] = useState(0);
 
   const [totalIncome, setTotalIncome] = useState(0);
+
+  const [product, setProduct] = useState({})
+  const [loadingProduct, setLoadingProduct] = useState(false)
 
   const compare2 = (a, b) => {
     if (a._id > b._id) {
@@ -182,6 +188,20 @@ const useSummaryData = () => {
     fetchTotalIncome();
   }, []);
 
+  useEffect(() => {
+    setLoadingProduct(true);
+    const fetchProduct = async () => {
+      try {
+        const res = await axios.get(`${url}/products/find/${params.id}`, setHeaders());
+        setProduct(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+      setLoadingProduct(false)
+    };
+    fetchProduct();
+  }, []);
+
 
   return { 
     usersMonth, 
@@ -197,6 +217,8 @@ const useSummaryData = () => {
     loadingTransactions,
     totalOrders,
     totalIncome,
+    product,
+    loadingProduct,
   };
 };
 

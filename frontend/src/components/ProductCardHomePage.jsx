@@ -12,7 +12,7 @@ const ProductCardHomePage = ({ product }) => {
           <img
             style={{ height: "400px" , width: "100%"}}
             className="object-cover m-0"
-            src={product.image}
+            src={product.image.url}
             alt={product.name}
           />
 

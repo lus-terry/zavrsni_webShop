@@ -2,11 +2,13 @@ import React from "react";
 import {Button} from "semantic-ui-react"
 import { useDispatch } from "react-redux";
 import { addToCart, getTotals } from "../slices/cartSlice";
+import {useNavigate} from "react-router-dom";
 
 
 
 const ProductCardHomePage = ({ product }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const handleAddToCart = (product) => {
         dispatch(addToCart(product));
@@ -21,13 +23,13 @@ const ProductCardHomePage = ({ product }) => {
           <img
             style={{ height: "400px" , width: "100%"}}
             className="object-cover m-0"
-            src={product.image}
+            src={product.image.url}
             alt={product.name}
           />
 
           <div style={{ height: "250px" }} className="p-2">
                 <div className="h-1/3 mt-1 px-2 razmaknut_text text-center text-lg flex flex-col">
-                    {product.name}
+                    <div className="product_name" onClick={() => navigate(`/product/${product._id}`)}>{product.name }</div>
                     <div className="  normal_text text-sm">
                     {product.price}€
                     </div>

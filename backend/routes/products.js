@@ -22,7 +22,10 @@ router.post("/", isAdmin, async(req, res) => {
                     shortDesc,
                     longDesc,
                     price,
-                    image : uploadRes.secure_url
+                    image: {
+                        url: uploadRes.secure_url,
+                        public_id: uploadRes.public_id
+                    },
                 })
     
                 const savedProduct = await product.save();
@@ -37,6 +40,8 @@ router.post("/", isAdmin, async(req, res) => {
 }
 );
 
+//GET ALL PRODUCTS
+
 router.get("/", async(req, res) => {
     try {
         const products = await Product.find()
@@ -45,8 +50,90 @@ router.get("/", async(req, res) => {
         console.log(error);
         res.status(500).send(error);
     }
-    
 })
+
+//GET PRODUCT
+
+
+router.get("/find/:id", async(req, res) => {
+    try {
+        const product = await Product.findById(req.params.id);
+        res.status(200).send(product)
+    } catch(error) {
+        res.status(500).send(error);
+    }
+})
+
+/*DELETE PRODUCT
+
+router.delete("/:id", async(req, res) => {
+    try {
+        const product = await Product.findById(req.params.id);
+
+        //checking if exists
+        if(!product) return res.status(400).send("Product not found.");
+        console.log("id", product.image.public_id)
+        //deleting picture from cloudinary and product from db
+        if(product.image.public_id) {
+            const destroyResponse = await cloudinary.uploader.destroy(
+                product.image.public_id
+            );
+
+            if(destroyResponse) {
+                const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+
+                res.status(200).send(deletedProduct);   
+            }
+        } else {
+            console.log("Action terminated. Failed to delete product image.")
+        }
+    } catch(error) {
+        res.status(500).send(error);
+    }
+}); */
+
+// DELETE PRODUCT
+router.delete("/:id", async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id);
+
+        // Checking if exists
+        if (!product) return res.status(400).send("Product not found.");
+
+        // Deleting picture from cloudinary and product from db
+        console.log("Product:", product);
+        console.log("Product Image:", product.image);
+
+        if (product.image && product.image.public_id) {
+            try {
+                const destroyResponse = await cloudinary.uploader.destroy(product.image.public_id);
+
+                console.log("destroyResponse", destroyResponse);
+
+                if (destroyResponse.result === 'ok') {
+                    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+                    res.status(200).send(deletedProduct);
+                } else {
+                    console.log("Failed to delete image on Cloudinary");
+                    res.status(500).send("Failed to delete image on Cloudinary");
+                }
+            } catch (innerError) {
+                console.log("Error inside if block:", innerError);
+                res.status(500).send(innerError);
+            }
+        } else {
+            console.log("Action terminated. Failed to delete product image.");
+            res.status(400).send("Failed to delete product image.");
+        }
+
+    } catch (error) {
+        console.log("Error:", error);
+        res.status(500).send(error);
+    }
+});
+
+
+
 
 
 

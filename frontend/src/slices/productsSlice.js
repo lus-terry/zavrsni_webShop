@@ -8,6 +8,7 @@ const initialState = {
     status: null,
     error: null,
     createStatus: null,
+    deleteStatus: null,
 };
 
 export const productsFetch = createAsyncThunk(
@@ -28,6 +29,20 @@ export const productsCreate = createAsyncThunk(
     async(values) => {
         try{ 
             const response = await axios.post(`${url}/products`, values, setHeaders())
+            return response.data 
+        }catch(error) {
+            console.log(error);
+            toast.error("an error occured");
+        }
+
+    }
+);
+
+export const productsDelete = createAsyncThunk(
+    "products/productsDelete",  
+    async(id) => {
+        try{ 
+            const response = await axios.delete(`${url}/products/${id}`, setHeaders())
             return response.data 
         }catch(error) {
             console.log(error);
@@ -68,6 +83,23 @@ const productsSlice = createSlice({
             })
             .addCase(productsCreate.rejected, (state, action) => {
                 state.createStatus = "rejected";
+                state.error = action.error.message;
+                toast.error("An error occured")
+            })
+            .addCase(productsDelete.pending, (state, action) => {
+                state.deleteStatus = "pending";
+                state.error = null;
+            })
+            .addCase(productsDelete.fulfilled, (state, action) => {
+                const newList= state.items.filter((item) => item._id !== action.payload._id)
+                state.items = newList
+
+                state.deleteStatus = "success";
+                state.error = null;
+                toast.error("Product Deleted") //not an error but red message
+            })
+            .addCase(productsDelete.rejected, (state, action) => {
+                state.deleteStatus = "rejected";
                 state.error = action.error.message;
                 toast.error("An error occured")
             });
