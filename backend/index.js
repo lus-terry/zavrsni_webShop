@@ -23,7 +23,6 @@ app.use("/api/register", register)
 app.use("/api/login", login)
 app.use("/api/stripe", stripe)
 app.use("/api/products", productsRoute)
-app.use("/api/stripe", stripe)
 app.use("/api/users", users)
 app.use("/api/orders", orders)
 

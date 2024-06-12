@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {Button} from "semantic-ui-react"
 
 
 
 const ProductCardHomePage = ({ product }) => {
   
+  const navigate = useNavigate()
 
 
   return (
@@ -12,7 +14,7 @@ const ProductCardHomePage = ({ product }) => {
           <img
             style={{ height: "400px" , width: "100%"}}
             className="object-cover m-0"
-            src={product.image.url}
+            src={product.image?.url}
             alt={product.name}
           />
 
@@ -24,14 +26,14 @@ const ProductCardHomePage = ({ product }) => {
                 
                 
                 <div className="h-1/3  items-center text-center justify-center  pt-1 flex flex-col">
-                    <div className="  normal_text text-lg   ">
+                    <div className="  normal_text  " style={{fontSize: '16px'}}>
                         {product.shortDesc}
                     </div>
                    
                 </div>
 
                 <div className="h-1/3  flex flex-col justify-end items-center">
-                    <Button  style={{width: '70%'}} >FIND OUT MORE</Button>
+                    <Button onClick={() => navigate(`/product/${product._id}`)} style={{width: '70%'}} >FIND OUT MORE</Button>
                 </div>
 
           </div>

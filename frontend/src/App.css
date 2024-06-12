@@ -10,6 +10,9 @@
 /*Playfair Display font*/
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+/*Lora*/
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 
 *{
   padding: 0;
@@ -19,7 +22,7 @@
 
 body {
  
-  font-family: 'Roboto';
+  font-family: 'Lora';
   font-weight: 400;
   background: #f6efe7;
 }
@@ -59,6 +62,23 @@ p {
   gap: 1rem;
  
 }
+
+.content_container_home {
+  
+  padding-top: 500px; /* Adjust this value as needed */
+  
+  width: 100%;
+  
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+
+ 
+}
+
+
 
 .content_container_blank {
   
@@ -159,10 +179,11 @@ p {
 }
 
 .normal_text {
-  font-family: 'Roboto';
+  font-family: 'Lora';
   font-weight: 400;
-  font-size: 15px;
-  line-height: 1.2;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: 0.1;
 }
 
 .button {
@@ -194,6 +215,21 @@ p {
   color: white;
 }
 
+.each-slide-effect > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 200px;
+  width: 200px;
+}
+
+.each-slide-effect span {
+  padding: 20px;
+  font-size: 20px;
+  background: #efefef;
+  text-align: center;
+}
 
 #button_blocked {
   pointer-events: none;

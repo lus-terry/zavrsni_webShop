@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from 'react-redux';
-import {useNavigate} from "react-router-dom";
 import { productsDelete } from '../../../slices/productsSlice';
-
+import EditProduct from '../EditProduct';
+import ProductCardDialog from '../../../components/ProductCardDialog';
 
 export default function ProductsList() {
   
-  const navigate = useNavigate()
+
   const dispatch = useDispatch()
 
   const {items} = useSelector((state) => state.products)
@@ -49,10 +49,12 @@ export default function ProductsList() {
             onClick={() => handleDelete(params.row.id)}>
               Delete
             </button>
-            <button 
-            className='text-green-500 hover:text-green-700' 
-            onClick={() => navigate(`/product/${params.row.id}`)}>
-              View
+            <button className='text-orange-500 hover:text-orange-700'>
+            <EditProduct prodId={params.row.id}/>
+            </button>
+          
+            <button className='text-green-500 hover:text-green-700'>
+            <ProductCardDialog  prodId={params.row.id}/>
             </button>
         </div> )
     } },

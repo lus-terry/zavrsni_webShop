@@ -42,7 +42,7 @@ router.post("/", isAdmin, async(req, res) => {
 
 //GET ALL PRODUCTS
 
-router.get("/", async(req, res) => {
+router.get("/",  async(req, res) => {
     try {
         const products = await Product.find()
         res.status(200).send(products)
@@ -58,7 +58,9 @@ router.get("/", async(req, res) => {
 router.get("/find/:id", async(req, res) => {
     try {
         const product = await Product.findById(req.params.id);
+        console.log("params", req.params.id)
         res.status(200).send(product)
+        
     } catch(error) {
         res.status(500).send(error);
     }
@@ -132,9 +134,59 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
+//EDIT PRODUCT
 
 
+router.put("/:id", isAdmin, async(req, res) => {
+    //if we selected a new image, we first must destroy current one on cloudinary
+    console.log("req.body.productImg",req.body.productImg)
+    if(req.body.productImg) { 
+        try{
+        const destroyResponse = await cloudinary.uploader.destroy(
+            req.body.product.image.public_id
+        )
+    console.log("destroyResponse",destroyResponse)
+    
+    if (destroyResponse) {
+        const uploadedResponse = await cloudinary.uploader.upload(
+            req.body.productImg, 
+            {
+            upload_preset: "webShop"
+            }
+        );
 
+        if(uploadedResponse) {
+            const updatedProduct = await Product.findByIdAndUpdate(
+                req.params.id,
+                {
+                    $set: {
+                        ...req.body.product,
+                        image: uploadedResponse,
+                    },
+                },
+                {new: true}
+            );
+            res.status(200).send(updatedProduct);
+        }
+    }
+    } catch(err) {
+        res.status(500).send(err);
+    }
+    } else {
+        try {
+            const updatedProduct = await Product.findByIdAndUpdate(
+                req.params.id,
+                {
+                    $set: req.body.product,
+                },
+                {new: true}
+            );
+            res.status(200).send(updatedProduct);
+        } catch(err) {
+            res.status(500).send(err);
+        }
+    }
+});
 
 
 module.exports = router

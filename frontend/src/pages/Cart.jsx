@@ -63,12 +63,12 @@ const Cart = () => {
                    
                     <div className=" obican_text flex flex-col w-screen items-center pt-5">
                         {cart.cartItems?.map(cartItem => (
-                            <div className="flex border-b border-t h-50 items-center w-screen" key= {cartItem._id}>
+                            <div className="flex border-b border-t h-50 items-center w-screen razmaknut_text" key= {cartItem._id}>
 
 
                                 {/*div koji sadrži sliku, ime i description */}
                                  <div className=" w-2/5 flex items-left ">
-                                    <img className= "h-40 pr-8 p-2 pl-20" src={cartItem.image} alt={cartItem.name} />
+                                    <img className= "h-40 pr-8 p-2 pl-20" src={cartItem.image.url} alt={cartItem.name} />
                                     <div className=" flex flex-col text-left justify-center">
                                         <h3 className="razmaknut_text">{cartItem.name}</h3>
                                        
@@ -81,7 +81,7 @@ const Cart = () => {
                                 </div>
 
                                 {/*div koji sadrži quantity */}
-                                <div class="flex w-1/5 items-center justify-center " >
+                                <div class="flex w-1/5 items-center justify-center  " >
                                     <div class="flex text-center justify-between px-2 items-center border-zinc-500/50 border-2 p-1" style={{width: '150px'}}>
                                         <button onClick={() => handleDecreaseCart(cartItem)}
                                                 className="rounded-full text-center flex items-center justify-center overflow-hidden bg-zinc-500/25 w-6 h-6 pb-1 "
@@ -103,12 +103,12 @@ const Cart = () => {
                                 
                                     
                                 {/*div koji sadrži total */}       
-                                <div className="w-1/5  relative">
+                                <div className="w-1/5  relative razmaknut_text">
                               
                                 <button className="absolute right-10 top-0 hover:font-bold " onClick={() => handleRemoveFromCart(cartItem)}>
                                        x
                                 </button>
-                                <div className="razmaknut_text text-center justify-center">
+                                <div className=" text-center justify-center">
                                 €{cartItem.price * cartItem.cartTotalQuantity}
                                 </div>
                                 
@@ -137,8 +137,8 @@ const Cart = () => {
                         <div className="flex flex-col text-left w-2/5 normal_text">
                             
                             <div className="cart-checkout flex flex-col pt-10">
-                                <div className="flex">
-                                                <div className="razmaknut_text w-1/2">TOTAL COST:</div>
+                                <div className="flex razmaknut_text">
+                                                <div className="w-1/2">TOTAL COST:</div>
                                                 <div className="w-1/2 text-center "> €{cart.cartTotalAmount}</div>
                                 </div> 
                                 <p className="obican_text text-sm pt-2">Taxes and shipping are calculated at checkout</p>

@@ -23,7 +23,7 @@ const ProductCardHomePage = ({ product }) => {
           <img
             style={{ height: "400px" , width: "100%"}}
             className="object-cover m-0"
-            src={product.image.url}
+            src={product.image?.url}
             alt={product.name}
           />
 
@@ -38,7 +38,7 @@ const ProductCardHomePage = ({ product }) => {
                 
                 
                 <div className="h-1/3  items-center text-center justify-center  pt-1 flex flex-col">
-                    <div className="  normal_text text-lg   ">
+                    <div className="  normal_text  " style={{fontSize: '15px'}}>
                         {product.longDesc}
                     </div>
                    

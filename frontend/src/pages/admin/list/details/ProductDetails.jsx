@@ -1,11 +1,10 @@
-import {useParams} from "react-router-dom"
 import useSummaryData from "../../summary_components/useSummaryData";
 import ProductCardView from "../../../../components/ProductCardView";
 
 const ProductDetails = () => {
-    const params = useParams();
+
     const { product, loadingProduct } = useSummaryData();
-    console.log("product",product);
+    console.log("product ovaj",product);
     
     return (
         <div className="content_container_blank" > 

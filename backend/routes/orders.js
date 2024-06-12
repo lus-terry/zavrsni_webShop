@@ -4,6 +4,7 @@ const moment = require("moment");
 const { Order } = require("../models/order");
 const router = require("express").Router();
 
+
 //GET ORDERS
 
 router.get("/", async(req, res) => {
@@ -14,13 +15,34 @@ router.get("/", async(req, res) => {
         const orders = query 
         ? await Order.find().sort({_id: -1}).limit(5) 
         : await Order.find().sort({_id: -1})
-
+        
         res.status(200).send(orders)
     }catch(err){
         console.log(err);
         res.status(500).send(err);
     }
 })
+
+//GET AN ORDER
+
+router.get("/findOne")
+
+//UPDATE ORDER
+
+router.put("/:id", isAdmin, async(req, res) => {
+    try {
+        const updatedOrder = await Order.findByIdAndUpdate(
+            req.params.id,
+            {
+                $set: req.body,
+            },
+            {new: true}
+        );
+        res.status(200).send(updatedOrder);
+    } catch(err) {
+        res.status(500).send(err)
+    }
+});
 
 
 //GET ORDER STATS

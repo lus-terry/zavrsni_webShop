@@ -22,7 +22,7 @@ const ProductCardView = ({ product }) => {
             <img
             style={{ height: "600px" , width: "400px"}}
             className="object-cover m-0"
-            src={product.image.url}
+            src={product.image?.url}
             alt={product.name}
           />
 

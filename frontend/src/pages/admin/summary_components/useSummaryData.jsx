@@ -193,6 +193,7 @@ const useSummaryData = () => {
     const fetchProduct = async () => {
       try {
         const res = await axios.get(`${url}/products/find/${params.id}`, setHeaders());
+       
         setProduct(res.data);
       } catch (err) {
         console.log(err);
@@ -200,7 +201,7 @@ const useSummaryData = () => {
       setLoadingProduct(false)
     };
     fetchProduct();
-  }, []);
+  }, [params.id]);
 
 
   return { 
