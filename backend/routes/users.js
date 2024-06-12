@@ -39,13 +39,26 @@ router.get("/stats", async(req, res) => {
 
 // GET ALL USERS
 
-router.get("/", isAdmin, async (req, res) => {
+router.get("/", async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.find().sort({_id: -1});
+        console.log("users", users)
         res.status(200).send(users);
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
+    }
+});
+
+//DELETE
+
+router.delete("/:id", async (req, res) => {
+    try{
+        const deletedUser = await User.findByIdAndDelete(req.params.id)
+
+        res.status(200).send(deletedUser);
+    } catch(error) {
+        res.status(500).send(error)
     }
 });
 

@@ -1,4 +1,5 @@
 import {  NavLink } from "react-router-dom";
+import {FaUsers, FaStore, FaClipboard, FaTachometerAlt} from "react-icons/fa"
 
 
 
@@ -9,13 +10,13 @@ const SideBar = () => {
   
 
    
-        <div className="column_container">
+     
             <NavLink className={({isActive}) => 
                 isActive ? "link-active" : "link-inactive"
                 } 
                 to="/admin/summary"
             >
-                Summary
+                <FaTachometerAlt/> Summary 
             </NavLink>
 
             <NavLink className={({isActive}) => 
@@ -23,10 +24,27 @@ const SideBar = () => {
                 } 
                 to="/admin/products"
             >
-                Products
+                <FaStore/> Products
             </NavLink>
 
-        </div>
+            <NavLink className={({isActive}) => 
+                isActive ? "link-active" : "link-inactive"
+                } 
+                to="/admin/orders"
+            >
+                <FaClipboard/> Orders
+            </NavLink>
+
+            <NavLink className={({isActive}) => 
+                isActive ? "link-active" : "link-inactive"
+                } 
+                to="/admin/users"
+            >
+                <FaUsers/> Users
+            </NavLink>
+
+
+  
    
   
 

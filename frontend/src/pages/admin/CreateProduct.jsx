@@ -68,8 +68,8 @@ const CreateProduct = () => {
 
             <form className="flex flex-col w-full px-20 items-center gap-5 " style={{ height: '750x', width: '1200px' }} onSubmit={handleSubmit}>
 
-                <div className="flex w-full gap-10 items-center">
-                
+                <div className="flex w-full gap-10 ">
+                    
                     <div className="  flex flex-col items-left text-left pl-2 justify-center gap-2 w-1/2"  >
                     
                         <p>name:</p>
@@ -111,31 +111,35 @@ const CreateProduct = () => {
                         
                         />
                         
-                        <p>image:</p>
-                        <label className="button" style={{  width: '100%' }}>
-                            <input
-                                type="file" 
-                                accept="image/*" 
-                                onChange={handleProductImageUpload}
-                                style={{ display: 'none' }}
-                                required
-                            />
-                            Choose File
-                        </label>
+                        
              
                     </div>
-               
-                        
-                        <div className=" flex align-center justify-center border-gray-200 border-2  w-1/2" style={{ height: '400px', width: '400px' }}>
-                            {productImg ? (
-                            <div >
-                                <img   src={productImg} alt="product" className="w-full h-full object-cover" />
+                        <div className=" flex  w-1/2 h-full items-center" >
+                            <div className="gap-5 flex flex-col">
+                                <p>image:</p>
+                                <label className="button" style={{  width: '400px' }}>
+                                    <input
+                                        type="file" 
+                                        accept="image/*" 
+                                        onChange={handleProductImageUpload}
+                                        style={{ display: 'none' }}
+                                        required
+                                    />
+                                    Choose File
+                                </label>
+                            
+                                <div className=" flex align-center justify-center border-gray-200 border-2 " style={{ height: '420px', width: '400px' }}>
+                                    {productImg ? (
+                                    <div >
+                                        <img   src={productImg} alt="product" className="w-full h-full object-cover" />
+                                    </div>
+                                    ) : (
+                                    <div  className=" justify-center items-center flex flex-col" >
+                                        Image preview will appear here
+                                    </div>
+                                    )}
+                                </div>
                             </div>
-                            ) : (
-                            <div  className=" justify-center items-center flex flex-col" >
-                                Image preview will appear here
-                            </div>
-                            )}
                         </div>
     
 

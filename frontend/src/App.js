@@ -18,6 +18,12 @@ import Dashboard from './pages/admin/Dashboard';
 import Products from './pages/admin/Products';
 import Summary from './pages/admin/Summary';
 import CreateProduct from './pages/admin/CreateProduct';
+import ProductsList from './pages/admin/list/ProductsList';
+import Orders from './pages/admin/Orders';
+import Users from './pages/admin/Users';
+import ProductDetails from './pages/admin/list/details/ProductDetails';
+import OrderDetails from './pages/admin/list/details/OrderDetails';
+import UserDetails from './pages/admin/list/details/UserDetails';
 
 
 function App() {
@@ -36,12 +42,17 @@ function App() {
             <Route path="/contact" element={<Contact />} /> 
             <Route path="/cart" element={<Cart />} /> 
             <Route path="/checkout-success" element={<CheckoutSuccess />} /> 
+            <Route path="/product/:id" element={<ProductDetails />} /> 
+            <Route path="/order/:id" element={<OrderDetails />} /> 
+            <Route path="/user/:id" element={<UserDetails />} /> 
             <Route path="/admin" element={<Dashboard/>}>
+              <Route path="summary" element={<Summary />} /> 
               <Route path="products" element={<Products />}>
+                <Route index element={<ProductsList/>}/>
                 <Route path="create-product" element={<CreateProduct/>}/>
               </Route>
-              <Route path="dashboard" element={<Dashboard />} /> 
-              <Route path="summary" element={<Summary />} /> 
+              <Route path="orders" element={<Orders />} /> 
+              <Route path="users" element={<Users />} /> 
             </Route>
             <Route path="/"  exact element={<Home />} /> 
             <Route path="*" element={<NotFound />} /> 
